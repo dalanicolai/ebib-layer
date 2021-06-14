@@ -1,0 +1,86 @@
+#+TITLE: ebib layer
+# Document tags are separated with "|" char
+# The example below contains 2 tags: "layer" and "web service"
+# Avaliable tags are listed in <spacemacs_root>/.ci/spacedoc-cfg.edn
+# under ":spacetools.spacedoc.config/valid-tags" section.
+#+TAGS: layer|web service
+
+# The maximum height of the logo should be 200 pixels.
+[[img/ebib.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+- [[#description][Description]]
+  - [[#features][Features:]]
+  - [[#comments][Comments]]
+- [[#install][Install]]
+- [[#key-bindings][Key bindings]]
+
+* Description
+This layer adds support for the Ebib reference manager.
+
+** Features:
+  - Manage references
+
+** Comments
+  - To quickly open files from a .bib database it is probably even easier to use
+    helm/ivy-bibtex
+    
+  - To get browser-extension functionality, use of an external reference manager
+    might be helpful. For this case it should be noted that JabRef stores and
+    manages its database as a .bib file, while Zotero uses an sqlite database.
+    Therefore, using Jabref might be prefered.
+
+    Additionally, JabRef does not require a running instance to use its
+    browser-extension.
+
+    Finally, if you rely on the Zotero web-api, then you might prefer to stay
+    with Zotero and use the [[https://gitlab.com/fvdbeek/emacs-zotero][Emacs-zotero]] package.
+
+* Install
+# To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+# add =ebib= to the existing =dotspacemacs-configuration-layers= list in this
+# file.
+
+To use this configuration layer, clone it to your =spacemacs-private-directory=
+either from the command line with
+#+begin_src emacs-lisp
+  git clone https://github.com/dalanicolai/ebib-layer.git .emacs.d/private/ebib
+#+end_src
+(where you can substitute the path for your private directory if you do not use
+the default path),
+
+or from Spacemacs with
+=M-: (shell-command (format "git clone
+https://github.com/dalanicolai/ebib-layer.git %s/ebib" spacemacs-private-directory))=.
+
+
+Subsequently add =ebib= to your =~/.spacemacs=. You will need to
+add =ebib= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+
+*Index buffer*
+| Key Binding     | Description                                           |
+|-----------------+-------------------------------------------------------|
+| ~J/K~           | scroll page down/up                                   |
+| ~SPC m j~       | jump to entry (searches only author and title fields) |
+| ~SPC u SPC m j~ | jump to entry (only) in current database              |
+| ~/~             | ebib-search (searches in all fields)                  |
+| ~n~             | ebib-search-next                                      |
+| ~e~             | switch to entry buffer                                |
+| ~SPC m k~       | delete current entry                                  |
+| ~SPC m b~       | fetch current entry bibtex from web                   |
+| ~q~             | quit ebib                                             |
+
+*Entry buffer*
+| ~q~ | quit entry buffer |
+
+*Biblio selection buffer*
+| ~e~ | import entry to current database |
+# Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
+# Examples:
+# [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
+# [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
+# If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
